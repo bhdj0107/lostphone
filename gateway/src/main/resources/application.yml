@@ -1,0 +1,92 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: device
+          uri: http://localhost:8082
+          predicates:
+            - Path=/devices/**, 
+        - id: lostdevice
+          uri: http://localhost:8083
+          predicates:
+            - Path=/lostDevices/**, /deviceStatuses/**
+        - id: notification
+          uri: http://localhost:8084
+          predicates:
+            - Path=/notifications/**, 
+        - id: devicecontrol
+          uri: http://localhost:8085
+          predicates:
+            - Path=/deviceControls/**, 
+        - id: member
+          uri: http://localhost:8086
+          predicates:
+            - Path=/members/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+#>>> API Gateway / Routes
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: device
+          uri: http://device:8080
+          predicates:
+            - Path=/devices/**, 
+        - id: lostdevice
+          uri: http://lostdevice:8080
+          predicates:
+            - Path=/lostDevices/**, 
+        - id: notification
+          uri: http://notification:8080
+          predicates:
+            - Path=/notifications/**, 
+        - id: devicecontrol
+          uri: http://devicecontrol:8080
+          predicates:
+            - Path=/deviceControls/**, 
+        - id: member
+          uri: http://member:8080
+          predicates:
+            - Path=/members/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
