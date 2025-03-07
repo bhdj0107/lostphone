@@ -92,6 +92,16 @@
                     >
                         회원정보조회
                     </v-list-item>
+                    <v-list-item
+                        class="px-2"
+                        key="memberInfos"
+                        to="/members/memberInfos"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        회원정보
+                    </v-list-item>
                 </v-list>
             </v-navigation-drawer>
         </div>
@@ -187,6 +197,13 @@ export default {
                 description: 'MemberInformation을 관리하는 화면입니다.', 
                 key: 'memberInformations', 
                 route: '/members/memberInformations',
+                ImageUrl: '',
+            },
+            { 
+                title: '회원정보', 
+                description: 'MemberInfo을 관리하는 화면입니다.', 
+                key: 'memberInfos', 
+                route: '/members/memberInfos',
                 ImageUrl: '',
             },
             

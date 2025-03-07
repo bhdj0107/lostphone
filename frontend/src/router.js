@@ -20,6 +20,8 @@ import MemberInfoView from "./components/MemberInfoView"
 import MemberInfoViewDetail from "./components/MemberInfoViewDetail"
 import MemberInformationView from "./components/MemberInformationView"
 import MemberInformationViewDetail from "./components/MemberInformationViewDetail"
+import MemberInfoView from "./components/MemberInfoView"
+import MemberInfoViewDetail from "./components/MemberInfoViewDetail"
 
 export default new Router({
     // mode: 'history',
@@ -87,6 +89,16 @@ export default new Router({
                 path: '/members/memberInformations/:id',
                 name: 'MemberInformationViewDetail',
                 component: MemberInformationViewDetail
+            },
+            {
+                path: '/members/memberInfos',
+                name: 'MemberInfoView',
+                component: MemberInfoView
+            },
+            {
+                path: '/members/memberInfos/:id',
+                name: 'MemberInfoViewDetail',
+                component: MemberInfoViewDetail
             },
 
 

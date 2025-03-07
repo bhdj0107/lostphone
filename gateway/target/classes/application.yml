@@ -20,7 +20,7 @@ spring:
         - id: member
           uri: http://localhost:8084
           predicates:
-            - Path=/members/**, /memberInfos/**, /memberInformations/**
+            - Path=/members/**, /memberInfos/**, /memberInformations/**, /memberInfos/**
         - id: frontend
           uri: http://localhost:8080
           predicates:
