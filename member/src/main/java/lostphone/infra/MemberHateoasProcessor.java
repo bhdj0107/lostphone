@@ -12,6 +12,12 @@ public class MemberHateoasProcessor
 
     @Override
     public EntityModel<Member> process(EntityModel<Member> model) {
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/memberlogin")
+                .withRel("memberlogin")
+        );
+
         return model;
     }
 }

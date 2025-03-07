@@ -44,6 +44,16 @@
                     </v-list-item>
                     <v-list-item
                         class="px-2"
+                        key="deviceInfos"
+                        to="/devices/deviceInfos"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        단말기정보
+                    </v-list-item>
+                    <v-list-item
+                        class="px-2"
                         key="lostDevices"
                         to="/lostdevices/lostDevices"
                         @click="changeUrl()"
@@ -54,36 +64,6 @@
                     </v-list-item>
                     <v-list-item
                         class="px-2"
-                        key="deviceStatuses"
-                        to="/lostdevices/deviceStatuses"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        신고자/고객센터
-                    </v-list-item>
-                    <v-list-item
-                        class="px-2"
-                        key="notifications"
-                        to="/notifications/notifications"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        알림
-                    </v-list-item>
-                    <v-list-item
-                        class="px-2"
-                        key="deviceControls"
-                        to="/devicecontrols/deviceControls"
-                        @click="changeUrl()"
-                        color="primary"
-                        style="font-weight:700;"
-                    >
-                        단말기제어
-                    </v-list-item>
-                    <v-list-item
-                        class="px-2"
                         key="members"
                         to="/members/members"
                         @click="changeUrl()"
@@ -91,6 +71,26 @@
                         style="font-weight:700;"
                     >
                         회원
+                    </v-list-item>
+                    <v-list-item
+                        class="px-2"
+                        key="memberInfos"
+                        to="/members/memberInfos"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        회원정보
+                    </v-list-item>
+                    <v-list-item
+                        class="px-2"
+                        key="memberInformations"
+                        to="/members/memberInformations"
+                        @click="changeUrl()"
+                        color="primary"
+                        style="font-weight:700;"
+                    >
+                        회원정보조회
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
@@ -162,20 +162,6 @@ export default {
                 ImageUrl: '',
             },
             { 
-                title: '알림', 
-                description: 'Notification을 관리하는 화면입니다.', 
-                key: 'notifications', 
-                route: '/notifications/notifications',
-                ImageUrl: '',
-            },
-            { 
-                title: '단말기제어', 
-                description: 'DeviceControl을 관리하는 화면입니다.', 
-                key: 'deviceControls', 
-                route: '/devicecontrols/deviceControls',
-                ImageUrl: '',
-            },
-            { 
                 title: '회원', 
                 description: 'Member을 관리하는 화면입니다.', 
                 key: 'members', 
@@ -183,10 +169,24 @@ export default {
                 ImageUrl: '',
             },
             { 
-                title: '신고자/고객센터', 
-                description: 'DeviceStatus을 관리하는 화면입니다.', 
-                key: 'deviceStatuses', 
-                route: '/lostdevices/deviceStatuses',
+                title: '단말기정보', 
+                description: 'DeviceInfo을 관리하는 화면입니다.', 
+                key: 'deviceInfos', 
+                route: '/devices/deviceInfos',
+                ImageUrl: '',
+            },
+            { 
+                title: '회원정보', 
+                description: 'MemberInfo을 관리하는 화면입니다.', 
+                key: 'memberInfos', 
+                route: '/members/memberInfos',
+                ImageUrl: '',
+            },
+            { 
+                title: '회원정보조회', 
+                description: 'MemberInformation을 관리하는 화면입니다.', 
+                key: 'memberInformations', 
+                route: '/members/memberInformations',
                 ImageUrl: '',
             },
             

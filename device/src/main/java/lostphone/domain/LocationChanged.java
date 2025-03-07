@@ -12,6 +12,8 @@ import lostphone.infra.AbstractEvent;
 public class LocationChanged extends AbstractEvent {
 
     private Long id;
+    private String latitude;
+    private String longitude;
 
     public LocationChanged(Device aggregate) {
         super(aggregate);

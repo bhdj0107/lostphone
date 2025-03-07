@@ -12,6 +12,9 @@ import lostphone.infra.AbstractEvent;
 public class MemberRegistered extends AbstractEvent {
 
     private Long id;
+    private String name;
+    private String contact;
+    private String password;
 
     public MemberRegistered(Member aggregate) {
         super(aggregate);

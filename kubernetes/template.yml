@@ -83,86 +83,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: notification
-  labels:
-    app: notification
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: notification
-  template:
-    metadata:
-      labels:
-        app: notification
-    spec:
-      containers:
-        - name: notification
-          image: username/notification:latest
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 10
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 10
-          livenessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 120
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 5
-
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: devicecontrol
-  labels:
-    app: devicecontrol
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: devicecontrol
-  template:
-    metadata:
-      labels:
-        app: devicecontrol
-    spec:
-      containers:
-        - name: devicecontrol
-          image: username/devicecontrol:latest
-          ports:
-            - containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 10
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 10
-          livenessProbe:
-            httpGet:
-              path: '/actuator/health'
-              port: 8080
-            initialDelaySeconds: 120
-            timeoutSeconds: 2
-            periodSeconds: 5
-            failureThreshold: 5
-
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: member
   labels:
     app: member
@@ -231,40 +151,6 @@ spec:
       targetPort: 8080
   selector:
     app: lostdevice
-
-
----
-
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: notification
-  labels:
-    app: notification
-spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
-  selector:
-    app: notification
-
-
----
-
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: devicecontrol
-  labels:
-    app: devicecontrol
-spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
-  selector:
-    app: devicecontrol
 
 
 ---

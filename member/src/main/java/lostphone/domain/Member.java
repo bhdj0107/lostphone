@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.persistence.*;
 import lombok.Data;
 import lostphone.MemberApplication;
-import lostphone.domain.MemberLogined;
 import lostphone.domain.MemberRegistered;
 
 @Entity
@@ -25,13 +24,12 @@ public class Member {
 
     private String contact;
 
+    private String password;
+
     @PostPersist
     public void onPostPersist() {
         MemberRegistered memberRegistered = new MemberRegistered(this);
         memberRegistered.publishAfterCommit();
-
-        MemberLogined memberLogined = new MemberLogined(this);
-        memberLogined.publishAfterCommit();
     }
 
     public static MemberRepository repository() {
@@ -40,5 +38,15 @@ public class Member {
         );
         return memberRepository;
     }
+
+    //<<< Clean Arch / Port Method
+    public void memberLogin(MemberLoginCommand memberLoginCommand) {
+        //implement business logic here:
+
+        MemberLogined memberLogined = new MemberLogined(this);
+        memberLogined.publishAfterCommit();
+    }
+    //>>> Clean Arch / Port Method
+
 }
 //>>> DDD / Aggregate Root

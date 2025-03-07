@@ -49,10 +49,6 @@ pluralCaseList.push( {plural: "devices/devices", pascal: "DeviceDevice"} )
 
 pluralCaseList.push( {plural: "lostdevices/lostDevices", pascal: "LostdeviceLostDevice"} )
 
-pluralCaseList.push( {plural: "notifications/notifications", pascal: "NotificationNotification"} )
-
-pluralCaseList.push( {plural: "devicecontrols/deviceControls", pascal: "DevicecontrolDeviceControl"} )
-
 pluralCaseList.push( {plural: "members/members", pascal: "MemberMember"} )
 
 

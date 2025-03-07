@@ -11,6 +11,9 @@
             <div>
                 <String label="Contact" v-model="item.contact" :editMode="editMode" @change="change" />
             </div>
+            <div>
+                <String label="Password" v-model="item.password" :editMode="editMode" @change="change" />
+            </div>
         </v-card-text>
 
         <v-card-actions>

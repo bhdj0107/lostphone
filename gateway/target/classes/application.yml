@@ -12,23 +12,15 @@ spring:
         - id: device
           uri: http://localhost:8082
           predicates:
-            - Path=/devices/**, 
+            - Path=/devices/**, /deviceInfos/**
         - id: lostdevice
           uri: http://localhost:8083
           predicates:
-            - Path=/lostDevices/**, /deviceStatuses/**
-        - id: notification
+            - Path=/lostDevices/**, 
+        - id: member
           uri: http://localhost:8084
           predicates:
-            - Path=/notifications/**, 
-        - id: devicecontrol
-          uri: http://localhost:8085
-          predicates:
-            - Path=/deviceControls/**, 
-        - id: member
-          uri: http://localhost:8086
-          predicates:
-            - Path=/members/**, 
+            - Path=/members/**, /memberInfos/**, /memberInformations/**
         - id: frontend
           uri: http://localhost:8080
           predicates:
@@ -61,14 +53,6 @@ spring:
           uri: http://lostdevice:8080
           predicates:
             - Path=/lostDevices/**, 
-        - id: notification
-          uri: http://notification:8080
-          predicates:
-            - Path=/notifications/**, 
-        - id: devicecontrol
-          uri: http://devicecontrol:8080
-          predicates:
-            - Path=/deviceControls/**, 
         - id: member
           uri: http://member:8080
           predicates:

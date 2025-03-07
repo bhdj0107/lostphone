@@ -19,5 +19,22 @@ public class MemberController {
 
     @Autowired
     MemberRepository memberRepository;
+
+    @RequestMapping(
+        value = "/members/memberlogin",
+        method = RequestMethod.POST,
+        produces = "application/json;charset=UTF-8"
+    )
+    public Member memberLogin(
+        HttpServletRequest request,
+        HttpServletResponse response,
+        @RequestBody MemberLoginCommand memberLoginCommand
+    ) throws Exception {
+        System.out.println("##### /member/memberLogin  called #####");
+        Member member = new Member();
+        member.memberLogin(memberLoginCommand);
+        memberRepository.save(member);
+        return member;
+    }
 }
 //>>> Clean Arch / Inbound Adaptor

@@ -12,6 +12,43 @@ public class LostDeviceHateoasProcessor
 
     @Override
     public EntityModel<LostDevice> process(EntityModel<LostDevice> model) {
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/closelost")
+                .withRel("closelost")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/changecontact")
+                .withRel("changecontact")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/modifyissue")
+                .withRel("modifyissue")
+        );
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() +
+                    "/issueacquirement"
+                )
+                .withRel("issueacquirement")
+        );
+        model.add(
+            Link
+                .of(
+                    model.getRequiredLink("self").getHref() +
+                    "/triggerinitialize"
+                )
+                .withRel("triggerinitialize")
+        );
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/backupdevice")
+                .withRel("backupdevice")
+        );
+
         return model;
     }
 }

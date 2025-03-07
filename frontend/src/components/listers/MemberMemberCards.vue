@@ -103,6 +103,7 @@
             me.newValue = {
                 'name': '',
                 'contact': '',
+                'password': '',
             }
         },
         methods:{

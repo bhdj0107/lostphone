@@ -8,20 +8,18 @@ Vue.use(Router);
 import DeviceDeviceManager from "./components/listers/DeviceDeviceCards"
 import DeviceDeviceDetail from "./components/listers/DeviceDeviceDetail"
 
+import DeviceInfoView from "./components/DeviceInfoView"
+import DeviceInfoViewDetail from "./components/DeviceInfoViewDetail"
 import LostdeviceLostDeviceManager from "./components/listers/LostdeviceLostDeviceCards"
 import LostdeviceLostDeviceDetail from "./components/listers/LostdeviceLostDeviceDetail"
-
-import DeviceStatusView from "./components/DeviceStatusView"
-import DeviceStatusViewDetail from "./components/DeviceStatusViewDetail"
-import NotificationNotificationManager from "./components/listers/NotificationNotificationCards"
-import NotificationNotificationDetail from "./components/listers/NotificationNotificationDetail"
-
-import DevicecontrolDeviceControlManager from "./components/listers/DevicecontrolDeviceControlCards"
-import DevicecontrolDeviceControlDetail from "./components/listers/DevicecontrolDeviceControlDetail"
 
 import MemberMemberManager from "./components/listers/MemberMemberCards"
 import MemberMemberDetail from "./components/listers/MemberMemberDetail"
 
+import MemberInfoView from "./components/MemberInfoView"
+import MemberInfoViewDetail from "./components/MemberInfoViewDetail"
+import MemberInformationView from "./components/MemberInformationView"
+import MemberInformationViewDetail from "./components/MemberInformationViewDetail"
 
 export default new Router({
     // mode: 'history',
@@ -39,6 +37,16 @@ export default new Router({
             },
 
             {
+                path: '/devices/deviceInfos',
+                name: 'DeviceInfoView',
+                component: DeviceInfoView
+            },
+            {
+                path: '/devices/deviceInfos/:id',
+                name: 'DeviceInfoViewDetail',
+                component: DeviceInfoViewDetail
+            },
+            {
                 path: '/lostdevices/lostDevices',
                 name: 'LostdeviceLostDeviceManager',
                 component: LostdeviceLostDeviceManager
@@ -47,38 +55,6 @@ export default new Router({
                 path: '/lostdevices/lostDevices/:id',
                 name: 'LostdeviceLostDeviceDetail',
                 component: LostdeviceLostDeviceDetail
-            },
-
-            {
-                path: '/lostdevices/deviceStatuses',
-                name: 'DeviceStatusView',
-                component: DeviceStatusView
-            },
-            {
-                path: '/lostdevices/deviceStatuses/:id',
-                name: 'DeviceStatusViewDetail',
-                component: DeviceStatusViewDetail
-            },
-            {
-                path: '/notifications/notifications',
-                name: 'NotificationNotificationManager',
-                component: NotificationNotificationManager
-            },
-            {
-                path: '/notifications/notifications/:id',
-                name: 'NotificationNotificationDetail',
-                component: NotificationNotificationDetail
-            },
-
-            {
-                path: '/devicecontrols/deviceControls',
-                name: 'DevicecontrolDeviceControlManager',
-                component: DevicecontrolDeviceControlManager
-            },
-            {
-                path: '/devicecontrols/deviceControls/:id',
-                name: 'DevicecontrolDeviceControlDetail',
-                component: DevicecontrolDeviceControlDetail
             },
 
             {
@@ -92,6 +68,26 @@ export default new Router({
                 component: MemberMemberDetail
             },
 
+            {
+                path: '/members/memberInfos',
+                name: 'MemberInfoView',
+                component: MemberInfoView
+            },
+            {
+                path: '/members/memberInfos/:id',
+                name: 'MemberInfoViewDetail',
+                component: MemberInfoViewDetail
+            },
+            {
+                path: '/members/memberInformations',
+                name: 'MemberInformationView',
+                component: MemberInformationView
+            },
+            {
+                path: '/members/memberInformations/:id',
+                name: 'MemberInformationViewDetail',
+                component: MemberInformationViewDetail
+            },
 
 
     ]

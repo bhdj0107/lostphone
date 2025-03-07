@@ -12,6 +12,8 @@ import lostphone.infra.AbstractEvent;
 public class InformModified extends AbstractEvent {
 
     private Long id;
+    private String information;
+    private String deviceName;
 
     public InformModified(Device aggregate) {
         super(aggregate);

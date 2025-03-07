@@ -10,6 +10,7 @@ import lombok.Data;
 import lostphone.DeviceApplication;
 import lostphone.domain.DeviceAssigned;
 import lostphone.domain.DeviceDeleted;
+import lostphone.domain.LocationChanged;
 import lostphone.domain.StatusModified;
 
 @Entity
@@ -58,8 +59,6 @@ public class Device {
     public void changeLocation(ChangeLocationCommand changeLocationCommand) {
         //implement business logic here:
 
-        LocationChanged locationChanged = new LocationChanged(this);
-        locationChanged.publishAfterCommit();
     }
 
     //>>> Clean Arch / Port Method

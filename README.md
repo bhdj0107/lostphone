@@ -22,8 +22,6 @@ See the README.md files inside the each microservices directory:
 
 - device
 - lostdevice
-- notification
-- devicecontrol
 - member
 
 
@@ -42,17 +40,9 @@ mvn spring-boot:run
 ```
  http :8088/lostDevices id="id"deviceId="deviceId"memberId="memberId"status="status"contact="contact"
 ```
-- notification
-```
- http :8088/notifications id="id"
-```
-- devicecontrol
-```
- http :8088/deviceControls id="id"
-```
 - member
 ```
- http :8088/members id="id"name="name"contact="contact"
+ http :8088/members id="id"name="name"contact="contact"password="password"
 ```
 
 

@@ -31,8 +31,6 @@ jobs:
         run: |
           mvn clean package -f ./device/pom.xml
           mvn clean package -f ./lostdevice/pom.xml
-          mvn clean package -f ./notification/pom.xml
-          mvn clean package -f ./devicecontrol/pom.xml
           mvn clean package -f ./member/pom.xml
 
       - name: Docker Build and push for Device
@@ -54,26 +52,6 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/lostdevice:latest
             ghcr.io/${{ github.repository }}/lostdevice:${{ github.ref_name }}
-            
-      - name: Docker Build and push for Notification
-        uses: docker/build-push-action@v4
-        with:
-          context: ./notification
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}/notification:latest
-            ghcr.io/${{ github.repository }}/notification:${{ github.ref_name }}
-            
-      - name: Docker Build and push for Devicecontrol
-        uses: docker/build-push-action@v4
-        with:
-          context: ./devicecontrol
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}/devicecontrol:latest
-            ghcr.io/${{ github.repository }}/devicecontrol:${{ github.ref_name }}
             
       - name: Docker Build and push for Member
         uses: docker/build-push-action@v4

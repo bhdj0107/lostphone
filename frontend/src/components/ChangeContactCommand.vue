@@ -5,6 +5,8 @@
         </v-card-title>
 
         <v-card-text>
+            <Number label="Id" v-model="value.id" :editMode="editMode"/>
+            <String label="Contact" v-model="value.contact" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -40,6 +42,8 @@
             value: {},
         }),
         created() {
+            this.value.id = 0;
+            this.value.contact = '';
         },
         watch: {
         },

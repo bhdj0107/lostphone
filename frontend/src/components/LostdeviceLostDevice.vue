@@ -51,48 +51,6 @@
                 <v-btn
                     color="primary"
                     text
-                    @click="save"
-                >
-                    분실신고철회
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    표기연락처변경
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    신고정보수정
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    습득신고
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    단말초기화
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    단말백업
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
                     @click="editMode = false"
                     v-if="editMode && !isNew"
                 >
@@ -102,6 +60,90 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openCloseLost"
+            >
+                CloseLost
+            </v-btn>
+            <v-dialog v-model="closeLostDiagram" width="500">
+                <CloseLostCommand
+                    @closeDialog="closeCloseLost"
+                    @closeLost="closeLost"
+                ></CloseLostCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openChangeContact"
+            >
+                ChangeContact
+            </v-btn>
+            <v-dialog v-model="changeContactDiagram" width="500">
+                <ChangeContactCommand
+                    @closeDialog="closeChangeContact"
+                    @changeContact="changeContact"
+                ></ChangeContactCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openModifyIssue"
+            >
+                ModifyIssue
+            </v-btn>
+            <v-dialog v-model="modifyIssueDiagram" width="500">
+                <ModifyIssueCommand
+                    @closeDialog="closeModifyIssue"
+                    @modifyIssue="modifyIssue"
+                ></ModifyIssueCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openIssueAcquirement"
+            >
+                IssueAcquirement
+            </v-btn>
+            <v-dialog v-model="issueAcquirementDiagram" width="500">
+                <IssueAcquirementCommand
+                    @closeDialog="closeIssueAcquirement"
+                    @issueAcquirement="issueAcquirement"
+                ></IssueAcquirementCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openTriggerInitialize"
+            >
+                TriggerInitialize
+            </v-btn>
+            <v-dialog v-model="triggerInitializeDiagram" width="500">
+                <TriggerInitializeCommand
+                    @closeDialog="closeTriggerInitialize"
+                    @triggerInitialize="triggerInitialize"
+                ></TriggerInitializeCommand>
+            </v-dialog>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="openBackupDevice"
+            >
+                BackupDevice
+            </v-btn>
+            <v-dialog v-model="backupDeviceDiagram" width="500">
+                <BackupDeviceCommand
+                    @closeDialog="closeBackupDevice"
+                    @backupDevice="backupDevice"
+                ></BackupDeviceCommand>
+            </v-dialog>
         </v-card-actions>
 
         <v-snackbar
@@ -139,6 +181,12 @@
                 timeout: 5000,
                 text: '',
             },
+            closeLostDiagram: false,
+            changeContactDiagram: false,
+            modifyIssueDiagram: false,
+            issueAcquirementDiagram: false,
+            triggerInitializeDiagram: false,
+            backupDeviceDiagram: false,
         }),
 	async created() {
         },
@@ -235,6 +283,146 @@
             },
             change(){
                 this.$emit('input', this.value);
+            },
+            async closeLost() {
+                try {
+                    if(!this.offline) {
+                        await axios.delete(axios.fixUrl(this.value._links['closeLost'].href))
+                    }
+
+                    this.editMode = false;
+                    this.isDelete = true;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async changeContact(params) {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['changecontact'].href), params)
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                    this.closeChangeContact();
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            openChangeContact() {
+                this.changeContactDiagram = true;
+            },
+            closeChangeContact() {
+                this.changeContactDiagram = false;
+            },
+            async modifyIssue(params) {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['modifyissue'].href), params)
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                    this.closeModifyIssue();
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            openModifyIssue() {
+                this.modifyIssueDiagram = true;
+            },
+            closeModifyIssue() {
+                this.modifyIssueDiagram = false;
+            },
+            async issueAcquirement(params) {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['issueacquirement'].href), params)
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                    this.closeIssueAcquirement();
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            openIssueAcquirement() {
+                this.issueAcquirementDiagram = true;
+            },
+            closeIssueAcquirement() {
+                this.issueAcquirementDiagram = false;
+            },
+            async triggerInitialize() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/triggerinitialize'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async backupDevice() {
+                try {
+                    if(!this.offline){
+                        var temp = await axios.post(axios.fixUrl(this.value._links['/backupdevice'].href))
+                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    }
+
+                    this.editMode = false;
+                    
+                    this.$emit('input', this.value);
+                    this.$emit('delete', this.value);
+                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
             },
         },
     }

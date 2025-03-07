@@ -63,6 +63,7 @@
                     { text: "id", value: "id" },
                     { text: "name", value: "name" },
                     { text: "contact", value: "contact" },
+                    { text: "password", value: "password" },
                 ],
             member : [],
             newValue: {},
@@ -82,6 +83,7 @@
             this.newValue = {
                 'name': '',
                 'contact': '',
+                'password': '',
             }
         },
         methods: {

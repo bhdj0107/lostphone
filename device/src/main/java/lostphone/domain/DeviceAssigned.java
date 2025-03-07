@@ -12,6 +12,11 @@ import lostphone.infra.AbstractEvent;
 public class DeviceAssigned extends AbstractEvent {
 
     private Long id;
+    private String deviceName;
+    private String status;
+    private String latitude;
+    private String longitude;
+    private String information;
 
     public DeviceAssigned(Device aggregate) {
         super(aggregate);
